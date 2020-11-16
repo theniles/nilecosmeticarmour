@@ -21,7 +21,7 @@ private final String boots_key = "ncabootsvisible";
 
 public String prettyPrint()
 {
-    return String.format("Head: %b Torso: %b Legs: %b Boots: %b", isHelmetVisible, isTorsoVisible, isLeggingsVisible, isBootsVisible);
+    return String.format("Head: %b, Torso: %b, Legs: %b, Boots: %b", isHelmetVisible, isTorsoVisible, isLeggingsVisible, isBootsVisible);
 }
 
     private boolean isHelmetVisible;

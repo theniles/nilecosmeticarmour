@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
 import net.minecraft.server.command.CommandManager;
 
 public class CosmeticArmour implements ModInitializer {
@@ -32,6 +34,8 @@ public static final Logger logger = LogManager.getLogger();
 
     @Override
     public void onInitialize() {
+ArgumentTypes.register(modid + ":armourslottype", ArmourSlotsArgumentType.class, new ConstantArgumentSerializer<>(ArmourSlotsArgumentType::armourSlots));
+
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             // dispatcher.register(
             //     CommandManager.literal("nileca")
