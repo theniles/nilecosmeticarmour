@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "net.nile.cosmetic.armour.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [],
+    "client": [
+        "ArmourFeatureRendererMixin", "ArmourFeatureRendererAccessor"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

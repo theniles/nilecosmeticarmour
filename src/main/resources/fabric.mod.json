@@ -1,0 +1,46 @@
+{
+    "schemaVersion": 1,
+    "id": "nilecosmeticarmour",
+    "version": "${version}",
+
+    "name": "Nile Cosmetic Armour",
+    "description": "Customise what armour slots are visible on you!",
+    "authors": [
+        "The Nile"
+    ],
+    "contact": {
+        "homepage": "",
+        "sources": ""
+    },
+
+    "license": "cc0",
+    "icon": "assets/nilecosmeticarmour/icon.png",
+
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "net.nile.cosmetic.armour.CosmeticArmour"
+        ],
+        "cardinal-components-entity": [
+            "net.nile.cosmetic.armour.MyComponents"
+        ]
+    },
+    "mixins": [
+        "nilecosmeticarmour.mixins.json"
+    ],
+
+    "custom": {
+        "cardinal-components": [
+            "nilecosmeticarmour:armourvisibility"
+        ]
+    },
+
+    "depends": {
+        "fabricloader": ">=0.7.4",
+        "fabric": "*",
+        "minecraft": "1.16.x"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}
