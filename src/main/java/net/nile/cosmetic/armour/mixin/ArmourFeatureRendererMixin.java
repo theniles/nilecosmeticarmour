@@ -24,13 +24,9 @@ public class ArmourFeatureRendererMixin {
     // @Inject(cancellable = true, at=@At("HEAD"), method = "renderArmor(Lnet/minecraft/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V")
     // private void nileRenderArmour(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, LivingEntity entity, EquipmentSlot equipmentSlot, int i, BipedEntityModel model, CallbackInfo callbackInfo)
     // {
-    //     LogManager.getLogger().info("The type is " + equipmentSlot);
-    //     if(entity instanceof PlayerEntity)
+    //     if(entity instanceof PlayerEntity && !MyComponents.ARMOUR_VISIBILITY.get(entity).isVisible(equipmentSlot))
     //     {
-    //         if(! MyComponents.ARMOUR_VISIBILITY.get(entity).isVisible(equipmentSlot))
-    //         {
-    //             callbackInfo.cancel();
-    //         }
+    //         callbackInfo.cancel();
     //     }
     // }
 

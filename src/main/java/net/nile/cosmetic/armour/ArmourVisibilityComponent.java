@@ -5,7 +5,14 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.nbt.CompoundTag;
 
 public class ArmourVisibilityComponent implements AutoSyncedComponent {
-//TODO finish this
+
+    public ArmourVisibilityComponent()
+    {
+        isHelmetVisible = true;
+        isTorsoVisible = true;
+        isLeggingsVisible = true;
+        isBootsVisible = true;
+    }
 
 private final String helmet_key = "ncahelmetvisible";
 private final String torso_key = "ncatorsovisible";
@@ -14,7 +21,7 @@ private final String boots_key = "ncabootsvisible";
 
 public String prettyPrint()
 {
-    return String.format("Head: {0} Torso: {1} Legs: {2} Boots: {3}", isHelmetVisible, isTorsoVisible, isLeggingsVisible, isBootsVisible);
+    return String.format("Head: %b Torso: %b Legs: %b Boots: %b", isHelmetVisible, isTorsoVisible, isLeggingsVisible, isBootsVisible);
 }
 
     private boolean isHelmetVisible;
