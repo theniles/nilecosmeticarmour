@@ -20,7 +20,7 @@ import net.nile.cosmetic.armour.MyComponents;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ArmorFeatureRenderer.class)
-public class ArmourFeatureRendererMixin {
+public class ArmourFeatureRendererMixin<T extends LivingEntity, M extends BipedEntityModel<T>, A extends BipedEntityModel<T>> {
     // @Inject(cancellable = true, at=@At("HEAD"), method = "renderArmor(Lnet/minecraft/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;ILnet/minecraft/client/render/entity/model/BipedEntityModel;)V")
     // private void nileRenderArmour(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, LivingEntity entity, EquipmentSlot equipmentSlot, int i, BipedEntityModel model, CallbackInfo callbackInfo)
     // {
@@ -29,9 +29,11 @@ public class ArmourFeatureRendererMixin {
     //         callbackInfo.cancel();
     //     }
     // }
+    //@Inject(cancellable = true, at=@At("HEAD"), method = "render(Lnet/minecraft/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;IFFFFFF)V")
+    //
 
-    @Inject(cancellable = true, at=@At("HEAD"), method = "render(Lnet/minecraft/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;IFFFFFF)V")
-    private void nileRender(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, LivingEntity livingEntity, float f, float g, float h, float j, float k, float l, CallbackInfo callbackInfo)
+    @Inject(cancellable = true, at=@At("HEAD"), method = "render")
+    private void nileRender(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T livingEntity, float f, float g, float h, float j, float k, float l, CallbackInfo callbackInfo)
     {
         if(livingEntity instanceof PlayerEntity)
         {
