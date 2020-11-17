@@ -1,5 +1,9 @@
 package net.nile.cosmetic.armour;
 
+import java.io.BufferedReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import com.mojang.brigadier.arguments.BoolArgumentType;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer;
@@ -34,6 +39,20 @@ public static final Logger logger = LogManager.getLogger();
 
     @Override
     public void onInitialize() {
+        Path cfgFile = FabricLoader.getInstance().getConfigDir().resolve(modid);
+
+        int permissionLevelBuffer;
+
+        try (BufferedReader reader = Files.newBufferedReader(cfgFile)) {
+            permissionLevelBuffer = Integer.parseInt(reader.readLine());
+            logger.info("NCA permission level found in config: " + permissionLevelBuffer);
+        } catch (Exception e) {
+            permissionLevelBuffer = 4;
+            logger.error("NCA permission level was not found in config. Defaulting to level 4.", e);
+        }
+
+        int permissionLevel = permissionLevelBuffer;
+
 ArgumentTypes.register(modid + ":armourslottype", ArmourSlotsArgumentType.class, new ConstantArgumentSerializer<>(ArmourSlotsArgumentType::armourSlots));
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
@@ -48,7 +67,7 @@ ArgumentTypes.register(modid + ":armourslottype", ArmourSlotsArgumentType.class,
                 .then(CommandManager.argument(ArmourVisibilityCommand.playersArgument, EntityArgumentType.players())
                 .then(CommandManager.argument(ArmourVisibilityCommand.visibilityArgument, BoolArgumentType.bool())
                 .then(CommandManager.argument(ArmourVisibilityCommand.slotsArgument, ArmourSlotsArgumentType.armourSlots())
-                .requires(requirement -> requirement.hasPermissionLevel(4))
+                .requires(requirement -> requirement.hasPermissionLevel(permissionLevel))
                 .executes(ArmourVisibilityCommand::run_set)))))
             );
 
@@ -56,7 +75,7 @@ ArgumentTypes.register(modid + ":armourslottype", ArmourSlotsArgumentType.class,
                 CommandManager.literal(ArmourVisibilityCommand.base_name)
                 .then(CommandManager.literal(ArmourVisibilityCommand.list_name)
                 .then(CommandManager.argument(ArmourVisibilityCommand.playersArgument, EntityArgumentType.players())
-                .requires(requirement -> requirement.hasPermissionLevel(4))
+                .requires(requirement -> requirement.hasPermissionLevel(permissionLevel))
                 .executes(ArmourVisibilityCommand::run_list)))
             );
         });
