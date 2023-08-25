@@ -1,34 +1,41 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "nileca",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Nile Cosmetic Armour",
+	"description": "Hide your armour to show your skin!",
 	"authors": [
-		"Me!"
+		"The Nile"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "",
+		"sources": "https://github.com/theniles/nilecosmeticarmour"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/nileca/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"com.github.theniles.nileca.NileCa"
 		],
 		"client": [
-			"com.example.ExampleModClient"
-		]
+		],
+		"cardinal-components-entity": [
+            "com.github.theniles.nileca.MyComponents"
+        ]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"nileca.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "nileca.client.mixins.json",
 			"environment": "client"
 		}
 	],
+	"custom": {
+        "cardinal-components": [
+            "nileca:visibility"
+        ]
+    },
 	"depends": {
 		"fabricloader": ">=0.14.21",
 		"minecraft": "~1.20.1",

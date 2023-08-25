@@ -1,0 +1,6 @@
+{
+    "nileca:command.list.pre" : "NCA visibility of ",
+    "nileca:command.list.post" : " was changed.",
+    "nileca:command.set.pre" : "NCA visibility of ",
+    "nileca:command.set.post" : " is "
+}

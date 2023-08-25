@@ -16,13 +16,17 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+    }
 }
 
 loom {
     splitEnvironmentSourceSets()
 
 	mods {
-		"modid" {
+		"nileca" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
@@ -43,6 +47,17 @@ dependencies {
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+
+	//cca
+	// Replace modImplementation with modApi if you expose components in your own API
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.2"
+    // Includes Cardinal Components API as a Jar-in-Jar dependency (optional)
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.2"
+
+	// Replace modImplementation with modApi if you expose components in your own API
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.2"
+    // Includes Cardinal Components API as a Jar-in-Jar dependency (optional)
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.2"
 }
 
 processResources {
